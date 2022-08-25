@@ -1,0 +1,29 @@
+@mixin forButtonNextBack {
+    position: absolute;
+    cursor: pointer;
+    top: 340px;
+    left: -145px;
+    width: 150px;
+    padding: 10px;
+    background: $color_white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+
+    &:hover {
+        background: $matte-black;
+        color: $color_white;
+    }
+}
+
+@mixin buyTourButton($color) {
+    border: 1px solid $color;
+    padding: 10px 30px;
+    color: $color;
+    text-decoration: none;
+
+    &:hover {
+        background: $color;
+        color: $color_white;
+    }
+}
