@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Training FE 1 - MonstarLab</title>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Form Validation" />
+    <meta name="keywords" content="HTML, CSS" />
+    <meta name="author" content="TrongTan" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/form/style.css" />
+  </head>
+
+  <body>
+    <h3>Validation</h3>
+    <div class="container">
+      <form onsubmit="return verifyPassword()">
+        <label for="usrname">Username</label><br />
+        <input
+          type="text"
+          id="usrname"
+          name="usrname"
+          pattern="^[^@$!%*#?&^_-]*$"
+          required
+        /><br />
+        <label for="email">Enter your email:</label><br />
+        <input
+          type="email"
+          id="email"
+          name="email"
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{1,}$"
+          required
+        /><br />
+        <label for="psw">Password</label><br />
+        <input
+          type="password"
+          id="psw"
+          name="psw"
+          pattern="^(?=.*[a-z])(?=.*[A-Z])[\d\w\W]{8,32}$"
+          required
+        /><br />
+        <label for="rePsw">Repeat Password</label><br />
+        <input
+          type="password"
+          id="rePsw"
+          name="rePsw"
+          title="Repeat Password"
+          required
+        /><br />
+
+        <input type="submit" id="submit" value="Submit" />
+      </form>
+    </div>
+
+    <div id="message1">
+      <h3>Tên người dùng không bao gồm:</h3>
+      <p id="letter" class="invalid">Kí tự đặc biệt</p>
+    </div>
+
+    <div id="message2">
+      <h3>Mật khẩu bao gồm:</h3>
+      <p id="letter1" class="invalid">Ít nhất một <b>chữ thường</b></p>
+      <p id="capital" class="invalid">Ít nhất một <b>chữ hoa</b> letter</p>
+      <p id="length" class="invalid">
+        Tối thiểu <b>8 kí tự</b> và tối đa <b>32 kí tự</b>
+      </p>
+    </div>
+
+    <div id="message3">
+      <p id="repeat" class="invalid">Xác nhận mật khẩu</p>
+    </div>
+    <span id="message" style="color: red"> </span> <br /><br />
+    <div id="message4">
+      <h3>Email theo kiểu characters@characters.domain</h3>
+      <p id="email1" class="invalid">Email không hợp lê</p>
+    </div>
+
+    <script type="text/javascript" src="/form/script.js"></script>
+  </body>
+</html>
