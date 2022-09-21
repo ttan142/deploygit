@@ -3,7 +3,7 @@
   <head>
     <title>Training FE 1 - MonstarLab</title>
     <meta charset="UTF-8" />
-    <meta name="description" content="Pricing Table" />
+    <meta name="description" content="Form Validation" />
     <meta name="keywords" content="HTML, CSS" />
     <meta name="author" content="TrongTan" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -28,7 +28,7 @@
         />
         <br />
         <div id="message1">
-          <p id="letter" class="invalid">Kí tự đặc biệt</p>
+          <p id="letterUser" class="invalid">Kí tự đặc biệt</p>
         </div>
         <label for="email">Email:</label><br />
         <input
@@ -39,8 +39,8 @@
           placeholder="characters@characters.domain"
           required
         /><br />
-        <div id="message4">
-          <p id="email1" class="invalid">Email không hợp lê</p>
+        <div id="message2">
+          <p id="email1" class="invalid">Email hợp lệ</p>
         </div>
 
         <label for="psw">Password</label><br />
@@ -54,12 +54,10 @@
         />
         <i class="far fa-eye" id="togglePassword"></i>
         <br />
-        <div id="message2">
-          <p id="letter1" class="invalid">Ít nhất một <b>chữ thường</b></p>
-          <p id="capital" class="invalid">Ít nhất một <b>chữ hoa</b> letter</p>
-          <p id="length" class="invalid">
-            Tối thiểu <b>8 kí tự</b> và tối đa <b>32 kí tự</b>
-          </p>
+        <div id="message3">
+          <p id="letterPsw" class="invalid">Ít nhất một <b>chữ thường</b></p>
+          <p id="capital" class="invalid">Ít nhất một <b>chữ hoa</b></p>
+          <p id="length" class="invalid">Tối thiểu <b>8 kí tự</b> và tối đa <b>32 kí tự</b></p>
         </div>
         <label for="rePsw">Repeat Password</label><br />
         <input
@@ -72,7 +70,10 @@
         />
         <i class="far fa-eye" id="togglePassword2"></i>
         <br />
-        <div id="message3">
+        <div id="message4">
+          <p id="letterRePsw" class="invalid">Ít nhất một <b>chữ thường</b></p>
+          <p id="capitalRePsw" class="invalid">Ít nhất một <b>chữ hoa</b></p>
+          <p id="lengthRePsw" class="invalid">Tối thiểu <b>8 kí tự</b> và tối đa <b>32 kí tự</b></p>
           <p id="repeat" class="invalid">Khớp với mật khẩu</p>
         </div>
 

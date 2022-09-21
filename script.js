@@ -1,35 +1,30 @@
 var myUsername = document.getElementById("usrname");
-var myInput = document.getElementById("psw");
-var myInput2 = document.getElementById("rePsw");
+var myPsw = document.getElementById("psw");
+var myRePsw = document.getElementById("rePsw");
 var myEmail = document.getElementById("email");
-var letter = document.getElementById("letter");
-var letter1 = document.getElementById("letter1");
+var letterUser = document.getElementById("letterUser");
+var letterPsw = document.getElementById("letterPsw");
 var capital = document.getElementById("capital");
-var number = document.getElementById("number");
 var length = document.getElementById("length");
+var letterRePsw = document.getElementById("letterRePsw");
+var capitalRePsw = document.getElementById("capitalRePsw");
+var lengthRePsw = document.getElementById("lengthRePsw");
 var submit = document.getElementById("submit");
 var repeat = document.getElementById("repeat");
 var info1 = document.getElementById("message1");
 var info2 = document.getElementById("message2");
 var info3 = document.getElementById("message3");
 var info4 = document.getElementById("message4");
-var val1 = document.getElementById("val1");
 var togglePassword = document.getElementById("togglePassword");
 var togglePassword2 = document.getElementById("togglePassword2");
 
-togglePassword2.onclick = function () {
-  showPassword();
-};
-togglePassword.onclick = function () {
-  showPassword();
-};
 function showPassword() {
-  if (myInput.type === "password" && myInput2.type === "password") {
-    myInput.type = "text";
-    myInput2.type = "text";
+  if (myPsw.type === "password" && myRePsw.type === "password") {
+    myPsw.type = "text";
+    myRePsw.type = "text";
   } else {
-    myInput.type = "password";
-    myInput2.type = "password";
+    myPsw.type = "password";
+    myRePsw.type = "password";
   }
   togglePassword.classList.toggle("fa-eye-slash");
   togglePassword2.classList.toggle("fa-eye-slash");
@@ -41,24 +36,47 @@ function show(x) {
 function hide(x) {
   x.style.display = "none";
 }
-myEmail.onfocus = function () {
-  show(info4);
-};
 
-myEmail.onblur = function () {
-  hide(info4);
-};
+function disable(x) {
+  x.classList.remove("valid");
+  x.classList.add("invalid");
+  show(x);
+  finalCheking();
+}
 
-myEmail.onkeyup = function () {
-  var lowerCaseLetters2 = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{1,}$/g;
-  if (myEmail.value.match(lowerCaseLetters2)) {
-    hide(info4);
-    enable(email1);
+function enable(x) {
+  x.classList.remove("invalid");
+  x.classList.add("valid");
+  hide(x);
+  finalCheking();
+}
+
+function check(x) {
+  return x.classList.contains("valid");
+}
+
+function verifyPassword() {
+  alert("Đã hoàn thành form thành công.");
+}
+
+function finalCheking() {
+  if (
+    check(letterPsw) &&
+    check(capital) &&
+    check(length) &&
+    check(email1) &&
+    check(repeat) &&
+    check(letterUser)
+  ) {
+    submit.disabled = false;
+    submit.style.opacity = 1;
   } else {
-    show(info4);
-    disable(email1);
+    submit.disabled = true;
+    submit.style.opacity = 0.4;
   }
-};
+}
+
+submit.disabled = true;
 
 myUsername.onfocus = function () {
   show(info1);
@@ -70,77 +88,119 @@ myUsername.onblur = function () {
 
 myUsername.onkeyup = function () {
   var lowerCaseLetters1 = /^[^@$!%*#?&^_-]*$/g;
-  if (myUsername.value.match(lowerCaseLetters1)) {
+  if (
+    myUsername.value.match(lowerCaseLetters1) &&
+    myUsername.value.length !== 0
+  ) {
     hide(info1);
-    enable(letter);
+    enable(letterUser);
   } else {
     show(info1);
-    disable(letter);
+    disable(letterUser);
   }
 };
 
-myInput.onfocus = function () {
+myEmail.onfocus = function () {
   show(info2);
 };
 
-myInput.onblur = function () {
+myEmail.onblur = function () {
   hide(info2);
 };
 
-myInput2.onfocus = function () {
+myEmail.onkeyup = function () {
+  var lowerCaseLetters2 = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{1,}$/g;
+  if (myEmail.value.match(lowerCaseLetters2)) {
+    hide(info2);
+    enable(email1);
+  } else {
+    show(info2);
+    disable(email1);
+  }
+};
+
+myPsw.onfocus = function () {
   show(info3);
 };
 
-myInput2.onblur = function () {
+myPsw.onblur = function () {
   hide(info3);
 };
 
-myInput2.onkeyup = function () {
-  if (myInput2.value === myInput.value) {
-    enable(repeat);
-    hide(info3);
-  } else {
-    show(info3);
-    disable(repeat);
-  }
-};
-
-myInput.onkeyup = function () {
+myPsw.onkeyup = function () {
   var lowerCaseLetters = /[a-z]/g;
   var upperCaseLetters = /[A-Z]/g;
-  if (myInput.value.match(lowerCaseLetters)) {
-    enable(letter1);
+  if (myPsw.value.match(lowerCaseLetters)) {
+    enable(letterPsw);
   } else {
-    disable(letter1);
+    disable(letterPsw);
   }
 
-  if (myInput.value.match(upperCaseLetters)) {
+  if (myPsw.value.match(upperCaseLetters)) {
     enable(capital);
   } else {
     disable(capital);
   }
 
-  if (myInput.value.length >= 8 && myInput.value.length <= 32) {
+  if (myPsw.value.length >= 8 && myPsw.value.length <= 32) {
     enable(length);
   } else {
     disable(length);
   }
+
+  if (check(letterPsw) && check(capital) && check(length)) {
+    hide(info3);
+  } else {
+    show(info3);
+  }
 };
 
-function disable(x) {
-  x.classList.remove("valid");
-  x.classList.add("invalid");
-  submit.disabled = true;
-  submit.style.opacity = 0.4;
-}
+togglePassword.onclick = function () {
+  showPassword();
+};
 
-function enable(x) {
-  x.classList.remove("invalid");
-  x.classList.add("valid");
-  submit.disabled = false;
-  submit.style.opacity = 1;
-}
+myRePsw.onfocus = function () {
+  show(info4);
+};
 
-function verifyPassword() {
-  alert("Đã hoàn thành form thành công.");
-}
+myRePsw.onblur = function () {
+  hide(info4);
+};
+
+myRePsw.onkeyup = function () {
+  var lowerCaseLetters = /[a-z]/g;
+  var upperCaseLetters = /[A-Z]/g;
+  if (myRePsw.value.match(lowerCaseLetters)) {
+    enable(letterRePsw);
+  } else {
+    disable(letterRePsw);
+  }
+
+  if (myRePsw.value.match(upperCaseLetters)) {
+    enable(capitalRePsw);
+  } else {
+    disable(capitalRePsw);
+  }
+
+  if (myRePsw.value.length >= 8 && myPsw.value.length <= 32) {
+    enable(lengthRePsw);
+  } else {
+    disable(lengthRePsw);
+  }
+
+  if (myRePsw.value === myPsw.value) {
+    enable(repeat);
+  } else {
+    disable(repeat);
+  }
+
+  if (check(letterRePsw) && check(capital) && check(length) && check(repeat)) {
+    hide(info4);
+  } else {
+    show(info4);
+  }
+};
+
+togglePassword2.onclick = function () {
+  showPassword();
+};
