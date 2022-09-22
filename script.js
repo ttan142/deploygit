@@ -204,3 +204,14 @@ myRePsw.onkeyup = function () {
 togglePassword2.onclick = function () {
   showPassword();
 };
+
+fetch("https://jsonplaceholder.typicode.com/users/1")
+  .then((response) => {
+    return response.json();
+  })
+  .then((data) => {
+    myUsername.value = data.username;
+    myEmail.value = data.email;
+    myPsw.value = data.name;
+    myRePsw.value = data.name;
+  });
