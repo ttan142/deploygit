@@ -1,33 +1,27 @@
-const myUsername = document.getElementById("usrname");
-const myPsw = document.getElementById("psw");
-const myRePsw = document.getElementById("rePsw");
-const myEmail = document.getElementById("email");
-const letterUser = document.getElementById("letterUser");
-const letterPsw = document.getElementById("letterPsw");
-const capital = document.getElementById("capital");
-const length = document.getElementById("length");
-const letterRePsw = document.getElementById("letterRePsw");
-const capitalRePsw = document.getElementById("capitalRePsw");
-const lengthRePsw = document.getElementById("lengthRePsw");
-const submit = document.getElementById("submit");
-const repeat = document.getElementById("repeat");
-const info1 = document.getElementById("message1");
-const info2 = document.getElementById("message2");
-const info3 = document.getElementById("message3");
-const info4 = document.getElementById("message4");
-const togglePassword = document.getElementById("togglePassword");
-const togglePassword2 = document.getElementById("togglePassword2");
+const $ = document.getElementById.bind(document);
+const myUsername = $("usrname");
+const myPsw = $("psw");
+const myRePsw = $("rePsw");
+const myEmail = $("email");
+const letterUser = $("letterUser");
+const letterPsw = $("letterPsw");
+const capital = $("capital");
+const length = $("length");
+const letterRePsw = $("letterRePsw");
+const capitalRePsw = $("capitalRePsw");
+const lengthRePsw = $("lengthRePsw");
+const submit = $("submit");
+const repeat = $("repeat");
+const info1 = $("message1");
+const info2 = $("message2");
+const info3 = $("message3");
+const info4 = $("message4");
+const togglePassword = $("togglePassword");
+const togglePassword2 = $("togglePassword2");
 
-const showPassword = () => {
-  myPsw.type === "password" ? (myPsw.type = "text") : (myPsw.type = "password");
-  togglePassword.classList.toggle("fa-eye-slash");
-};
-
-const showRePassword = () => {
-  myRePsw.type === "password"
-    ? (myRePsw.type = "text")
-    : (myRePsw.type = "password");
-  togglePassword2.classList.toggle("fa-eye-slash");
+const showPassword = (x, y) => {
+  x.type === "password" ? (x.type = "text") : (x.type = "password");
+  y.classList.toggle("fa-eye-slash");
 };
 
 const show = (x) => {
@@ -162,7 +156,7 @@ myPsw.oninput = () => {
 };
 
 togglePassword.onclick = () => {
-  showPassword();
+  showPassword(myPsw, togglePassword);
 };
 
 myRePsw.onfocus = () => {
@@ -180,7 +174,7 @@ myRePsw.oninput = () => {
 };
 
 togglePassword2.onclick = () => {
-  showRePassword();
+  showPassword(myRePsw, togglePassword2);
 };
 
 fetch("https://jsonplaceholder.typicode.com/users/1")
