@@ -19,13 +19,9 @@ var togglePassword = document.getElementById("togglePassword");
 var togglePassword2 = document.getElementById("togglePassword2");
 
 function showPassword() {
-  if (myPsw.type === "password" && myRePsw.type === "password") {
-    myPsw.type = "text";
-    myRePsw.type = "text";
-  } else {
-    myPsw.type = "password";
-    myRePsw.type = "password";
-  }
+  myPsw.type === "password" && myRePsw.type === "password"
+    ? ((myPsw.type = "text"), (myRePsw.type = "text"))
+    : ((myPsw.type = "password"), (myRePsw.type = "password"));
   togglePassword.classList.toggle("fa-eye-slash");
   togglePassword2.classList.toggle("fa-eye-slash");
 }
@@ -60,26 +56,73 @@ function verifyPassword() {
 }
 
 function finalCheking() {
-  if (
-    check(letterPsw) &&
-    check(capital) &&
-    check(length) &&
-    check(email1) &&
-    check(repeat) &&
-    check(letterUser)
-  ) {
-    submit.disabled = false;
-    submit.style.opacity = 1;
-  } else {
-    submit.disabled = true;
-    submit.style.opacity = 0.4;
-  }
+  check(letterPsw) &&
+  check(capital) &&
+  check(length) &&
+  check(email1) &&
+  check(repeat) &&
+  check(letterUser)
+    ? ((submit.disabled = false), (submit.style.opacity = 1))
+    : ((submit.disabled = true), (submit.style.opacity = 0.4));
+}
+
+function checkUserName() {
+  var lowerCaseLetters1 = /^[^@$!%*#?&^_-]*$/g;
+  myUsername.value.match(lowerCaseLetters1) && myUsername.value.length !== 0
+    ? (hide(info1), enable(letterUser))
+    : (show(info1), disable(letterUser));
+}
+
+function checkEmail() {
+  var lowerCaseLetters2 = /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{1,}$/g;
+  myEmail.value.match(lowerCaseLetters2)
+    ? (hide(info2), enable(email1))
+    : (show(info2), disable(email1));
+}
+
+function checkPsw() {
+  var lowerCaseLetters = /[a-z]/g;
+  var upperCaseLetters = /[A-Z]/g;
+  myPsw.value.match(lowerCaseLetters) ? enable(letterPsw) : disable(letterPsw);
+
+  myPsw.value.match(upperCaseLetters) ? enable(capital) : disable(capital);
+
+  myPsw.value.length >= 8 && myPsw.value.length <= 32
+    ? enable(length)
+    : disable(length);
+
+  check(letterPsw) && check(capital) && check(length)
+    ? hide(info3)
+    : show(info3);
+}
+
+function checkRePsw() {
+  var lowerCaseLetters = /[a-z]/g;
+  var upperCaseLetters = /[A-Z]/g;
+  myRePsw.value.match(lowerCaseLetters)
+    ? enable(letterRePsw)
+    : disable(letterRePsw);
+
+  myRePsw.value.match(upperCaseLetters)
+    ? enable(capitalRePsw)
+    : disable(capitalRePsw);
+
+  myRePsw.value.length >= 8 && myPsw.value.length <= 32
+    ? enable(lengthRePsw)
+    : disable(lengthRePsw);
+
+  myRePsw.value === myPsw.value ? enable(repeat) : disable(repeat);
+
+  check(letterRePsw) && check(capital) && check(length) && check(repeat)
+    ? hide(info4)
+    : show(info4);
 }
 
 submit.disabled = true;
 
 myUsername.onfocus = function () {
   show(info1);
+  checkUserName();
 };
 
 myUsername.onblur = function () {
@@ -87,21 +130,12 @@ myUsername.onblur = function () {
 };
 
 myUsername.onkeyup = function () {
-  var lowerCaseLetters1 = /^[^@$!%*#?&^_-]*$/g;
-  if (
-    myUsername.value.match(lowerCaseLetters1) &&
-    myUsername.value.length !== 0
-  ) {
-    hide(info1);
-    enable(letterUser);
-  } else {
-    show(info1);
-    disable(letterUser);
-  }
+  checkUserName();
 };
 
 myEmail.onfocus = function () {
   show(info2);
+  checkEmail();
 };
 
 myEmail.onblur = function () {
@@ -109,18 +143,12 @@ myEmail.onblur = function () {
 };
 
 myEmail.onkeyup = function () {
-  var lowerCaseLetters2 = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{1,}$/g;
-  if (myEmail.value.match(lowerCaseLetters2)) {
-    hide(info2);
-    enable(email1);
-  } else {
-    show(info2);
-    disable(email1);
-  }
+  checkEmail();
 };
 
 myPsw.onfocus = function () {
   show(info3);
+  checkPsw();
 };
 
 myPsw.onblur = function () {
@@ -128,31 +156,7 @@ myPsw.onblur = function () {
 };
 
 myPsw.onkeyup = function () {
-  var lowerCaseLetters = /[a-z]/g;
-  var upperCaseLetters = /[A-Z]/g;
-  if (myPsw.value.match(lowerCaseLetters)) {
-    enable(letterPsw);
-  } else {
-    disable(letterPsw);
-  }
-
-  if (myPsw.value.match(upperCaseLetters)) {
-    enable(capital);
-  } else {
-    disable(capital);
-  }
-
-  if (myPsw.value.length >= 8 && myPsw.value.length <= 32) {
-    enable(length);
-  } else {
-    disable(length);
-  }
-
-  if (check(letterPsw) && check(capital) && check(length)) {
-    hide(info3);
-  } else {
-    show(info3);
-  }
+  checkPsw();
 };
 
 togglePassword.onclick = function () {
@@ -161,6 +165,7 @@ togglePassword.onclick = function () {
 
 myRePsw.onfocus = function () {
   show(info4);
+  checkRePsw();
 };
 
 myRePsw.onblur = function () {
@@ -168,37 +173,7 @@ myRePsw.onblur = function () {
 };
 
 myRePsw.onkeyup = function () {
-  var lowerCaseLetters = /[a-z]/g;
-  var upperCaseLetters = /[A-Z]/g;
-  if (myRePsw.value.match(lowerCaseLetters)) {
-    enable(letterRePsw);
-  } else {
-    disable(letterRePsw);
-  }
-
-  if (myRePsw.value.match(upperCaseLetters)) {
-    enable(capitalRePsw);
-  } else {
-    disable(capitalRePsw);
-  }
-
-  if (myRePsw.value.length >= 8 && myPsw.value.length <= 32) {
-    enable(lengthRePsw);
-  } else {
-    disable(lengthRePsw);
-  }
-
-  if (myRePsw.value === myPsw.value) {
-    enable(repeat);
-  } else {
-    disable(repeat);
-  }
-
-  if (check(letterRePsw) && check(capital) && check(length) && check(repeat)) {
-    hide(info4);
-  } else {
-    show(info4);
-  }
+  checkRePsw();
 };
 
 togglePassword2.onclick = function () {
