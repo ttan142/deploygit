@@ -149,6 +149,7 @@ myEmail.onkeyup = function () {
 myPsw.onfocus = function () {
   show(info3);
   checkPsw();
+  checkRePsw();
 };
 
 myPsw.onblur = function () {
@@ -157,6 +158,7 @@ myPsw.onblur = function () {
 
 myPsw.onkeyup = function () {
   checkPsw();
+  checkRePsw();
 };
 
 togglePassword.onclick = function () {
