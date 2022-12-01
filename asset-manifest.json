@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/deploygit/static/css/main.12fd649c.chunk.css",
+    "main.js": "/deploygit/static/js/main.5090016b.chunk.js",
+    "main.js.map": "/deploygit/static/js/main.5090016b.chunk.js.map",
+    "runtime-main.js": "/deploygit/static/js/runtime-main.a19a8903.js",
+    "runtime-main.js.map": "/deploygit/static/js/runtime-main.a19a8903.js.map",
+    "static/js/2.b4691338.chunk.js": "/deploygit/static/js/2.b4691338.chunk.js",
+    "static/js/2.b4691338.chunk.js.map": "/deploygit/static/js/2.b4691338.chunk.js.map",
+    "index.html": "/deploygit/index.html",
+    "static/css/main.12fd649c.chunk.css.map": "/deploygit/static/css/main.12fd649c.chunk.css.map",
+    "static/js/2.b4691338.chunk.js.LICENSE.txt": "/deploygit/static/js/2.b4691338.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a19a8903.js",
+    "static/js/2.b4691338.chunk.js",
+    "static/css/main.12fd649c.chunk.css",
+    "static/js/main.5090016b.chunk.js"
+  ]
+}
